@@ -32,14 +32,21 @@
 </head>
 <body>
 
-  <h1>🎯 What's for Lunch?</h1>
+  <h1>🎯 Where are we eating?</h1>
   <canvas id="wheelCanvas" width="400" height="400"></canvas><br>
   <button id="spinButton">Spin the Wheel!</button>
   <p id="result"></p>
 
   <script>
-    const options = ["Lees", "Pizza", "Smalls", "Salad Station", "Zuppardos", "Spudlys", "Manos", "Guillory’s", ”Daisy Dukes”, “Chinese”, “Firehouse”, “sushi”, “The Diner by Dixie”,”World Deli”, “Zeas”, “Acme”,”Parrans”,”LA Purchase”,”Danny & Clyde’s”];
-    const colors = ["#f4a261", "#e76f51", "#2a9d8f", "#264653", "#e9c46a", "#9d4edd", "#06d6a0", "#118ab2"];
+    const options = [
+      "Lees", "Pizza", "Smalls", "Salad Station", "Zuppardos", "Spudlys",
+      "Manos", "Guillory’s", "Daisy Dukes", "Chinese", "Firehouse", "Sushi",
+      "The Diner by Dixie", "World Deli", "Zeas", "Acme", "Parrans",
+      "LA Purchase", "Danny & Clyde’s"
+    ];
+
+    const colors = ["#f4a261", "#e76f51", "#2a9d8f", "#264653", "#e9c46a", "#9d4edd", "#06d6a0", "#118ab2", "#f3722c", "#43aa8b"];
+
     const canvas = document.getElementById("wheelCanvas");
     const ctx = canvas.getContext("2d");
     const spinButton = document.getElementById("spinButton");
@@ -60,7 +67,7 @@
         ctx.fill();
 
         ctx.fillStyle = "white";
-        ctx.font = "16px Arial";
+        ctx.font = "14px Arial";
         ctx.save();
         ctx.translate(200, 200);
         ctx.rotate(angle + arc / 2);
@@ -76,7 +83,7 @@
       if (isSpinning) return;
       isSpinning = true;
 
-      let rotation = Math.random() * 360 + 720; // 2+ spins
+      let rotation = Math.random() * 360 + 720; // 2+ full spins
       let duration = 3000;
       let start = performance.now();
 
@@ -93,7 +100,7 @@
         } else {
           isSpinning = false;
           let index = Math.floor(options.length - (startAngle / (2 * Math.PI)) * options.length) % options.length;
-          result.textContent = `🎉 You got: ${options[index]}!`;
+          result.textContent = `🍽️ It's: ${options[index]}!`;
         }
       }
 
